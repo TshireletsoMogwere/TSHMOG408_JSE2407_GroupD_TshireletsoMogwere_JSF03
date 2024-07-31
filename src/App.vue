@@ -1,6 +1,7 @@
 <script setup>
 
 import Products from './components/Products.vue';
+import '@fortawesome/fontawesome-free/css/all.css'
 
 </script>
 

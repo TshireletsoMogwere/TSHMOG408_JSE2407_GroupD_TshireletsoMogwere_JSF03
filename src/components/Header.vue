@@ -28,6 +28,12 @@ const selectCategory = (category) => {
           {{ category }}
         </button>
       </div>
+
+      <div class="header-icons">
+      <i class="fas fa-search header-icon" aria-hidden="true"></i>
+      <i class="fas fa-shopping-cart header-icon" aria-hidden="true"></i>
+      <i class="fas fa-user header-icon" aria-hidden="true"></i>
+      </div>
     </header>
   </template>
   
@@ -43,8 +49,10 @@ const selectCategory = (category) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 30px;
+  padding: 20px;
   position: fixed; 
+  font-weight: bolder;
+  font-size: x-large;
 }
 
 .icon {
@@ -65,7 +73,7 @@ const selectCategory = (category) => {
   display: flex;
   gap: 10px;
   position: relative;
-  right: 10%;
+  right: 2%;
   margin: 0 auto; 
 }
 
@@ -85,5 +93,69 @@ const selectCategory = (category) => {
 
 .category-selector button:hover {
   background-color: rgb(41, 99, 119);
+}
+
+.header-icons {
+  display: flex;
+  gap: 30px; 
+  position: relative;
+  right: 5%;
+}
+
+.header-icon {
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.header-icon:hover {
+  opacity: 0.8; 
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+    font-size: large;
+  }
+
+  .store {
+    margin-left: 0;
+  }
+
+  .category-selector {
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .header-icons {
+    justify-content: center;
+    margin-top: 10px;
+    gap: 15px; 
+  }
+
+  .header-icon {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    font-size: medium;
+  }
+
+  .icon {
+    width: 70px;
+  }
+
+  .category-selector button {
+    padding: 6px 12px;
+    font-size: small;
+  }
+
+  .header-icon {
+    font-size: 1rem;
+  }
 }
 </style>
