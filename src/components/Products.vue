@@ -1,19 +1,23 @@
-<script setup>
+<script>
+export default {
+  props: {
+    product: {
+      type: Object,
+      required: true,
+    },
+  },
+};
 </script>
 
 <template>
-    <!-- Products Display -->
-      <div v-if="sortedProducts.length" class="products-container">
-        <div v-for="product in sortedProducts" :key="product.id" class="product-card" @click="navigateToProductDetail(product.id)">
-            <img :src="product.image" alt="Product Image" class="product-image"/>
-          <h2>{{ product.title }}</h2>
-          <p>${{ product.price }}</p>
-          <p>{{ product.category }}</p>
-        </div>
-      </div>
-      <div v-else>
-        <p>Loading Products</p>
-      </div>
+  <!-- Products Display -->
+   <div class="product-card">
+    <img :src="product.image" alt="product image" class="product-image" />
+    <div class="product-details">
+      <h2 class="product-title">{{ product.title }}</h2>
+      <p class="product-price">${{ product.price }}</p>
+    </div>
+  </div>
   </template>
   
   

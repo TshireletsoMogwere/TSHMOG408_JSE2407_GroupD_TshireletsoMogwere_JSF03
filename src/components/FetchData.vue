@@ -95,6 +95,7 @@ export default {
 </script>
 
 <template>
+  
    <div>
     <div class="sort-options">
       <select @change="handleSortChange" class="sort-dropdown">
