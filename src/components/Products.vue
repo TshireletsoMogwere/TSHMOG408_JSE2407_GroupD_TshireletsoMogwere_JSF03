@@ -77,10 +77,7 @@ const navigateToProductDetail = (productId) => {
       <button @click="resetFiltersAndSorting">Reset Filters and Sorting</button>
       </div>
     
-    
-
-  
-      <!-- Products Display -->
+    <!-- Products Display -->
       <div v-if="sortedProducts.length" class="products-container">
         <div v-for="product in sortedProducts" :key="product.id" class="product-card" @click="navigateToProductDetail(product.id)">
             <img :src="product.image" alt="Product Image" class="product-image"/>
