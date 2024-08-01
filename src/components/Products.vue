@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, } from 'vue-router';
 import FetchData from './FetchData.vue';
 import Header from "./Header.vue";
 
@@ -38,16 +38,15 @@ const sortedProducts = computed(() => {
   return sorted;
 });
 
-
-// Function to filter products when category changes
-const filterByCategory = () => {
-  // `filteredProducts` computed property will automatically update
-};
-
 // Function to reset filters and sorting
 const resetFiltersAndSorting = () => {
   selectedCategory.value = '';
   selectedSort.value = '';
+};
+
+const navigateToProductDetail = (productId) => {
+  console.log('Navigating to product ID:', productId);
+  router.push({ name: 'ProductDetail', params: { id: productId } });
 };
 
 </script>
@@ -83,7 +82,7 @@ const resetFiltersAndSorting = () => {
   
       <!-- Products Display -->
       <div v-if="sortedProducts.length" class="products-container">
-        <div v-for="product in sortedProducts" :key="product.id" class="product-card" @click="navigateToProduct(product.id)">
+        <div v-for="product in sortedProducts" :key="product.id" class="product-card" @click="navigateToProductDetail(product.id)">
             <img :src="product.image" alt="Product Image" class="product-image"/>
           <h2>{{ product.title }}</h2>
           <p>${{ product.price }}</p>

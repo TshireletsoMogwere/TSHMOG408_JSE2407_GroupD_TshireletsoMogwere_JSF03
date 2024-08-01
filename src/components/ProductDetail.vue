@@ -8,8 +8,7 @@ const product = ref(null);
 
 // Simulate fetching product detail
 const fetchProductDetail = async () => {
-  // Replace with your actual data fetching logic
-  const response = await fetch(`https://api.example.com/products/${productId.value}`);
+  const response = await fetch(`https://fakestoreapi.com/products/${productId.value}`);
   product.value = await response.json();
 };
 
