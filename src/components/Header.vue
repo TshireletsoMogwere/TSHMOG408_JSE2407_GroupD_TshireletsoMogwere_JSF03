@@ -1,9 +1,11 @@
 <script>
  import { ref, onMounted } from 'vue';
+ import { productStore } from '../stores/productStore';
 
 
  export default {
     setup() {
+      const { state, setCategory } = productStore();
       const categories = ref([]);
 
       const fetchCategories = async () => {
@@ -17,7 +19,7 @@
   
       onMounted(fetchCategories);
   
-      return { categories };
+      return { categories, state, setCategory };
 
     }
   }
@@ -35,7 +37,7 @@
         <button
           v-for="category in categories"
           :key="category"
-          @click="$emit('category-select', category)"
+          @click="setCategory(category)"
         >
           {{ category }}
         </button>

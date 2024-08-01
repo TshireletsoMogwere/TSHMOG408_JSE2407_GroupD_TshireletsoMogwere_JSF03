@@ -16,11 +16,10 @@ export default {
     <div class="product-details">
       <h2 class="product-title">{{ product.title }}</h2>
       <p class="product-price">${{ product.price }}</p>
+      <p class="product-category">{{ product.category }}</p>
     </div>
   </div>
   </template>
-  
-  
 <style scoped> 
 
 .product-image {
@@ -32,13 +31,6 @@ export default {
   transition: transform 0.3s ease-in-out;
 }
 
-
-.products-container {
-    display: grid;
-     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
-     gap: 20px;
-     justify-content: center;
-}
 
 .product-card {
     aspect-ratio: 1;

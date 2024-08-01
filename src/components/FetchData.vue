@@ -1,108 +1,69 @@
 <script>
-import { ref, onMounted, watch} from 'vue';
+import {  computed, onMounted } from 'vue';
 import ProductDisplay from './ProductDisplay.vue';
+import { productStore } from '../stores/productStore';
 import { useRouter } from 'vue-router';
 
-
-
 export default {
-  components: { ProductDisplay},
-  props: {
-    selectedCategory: {
-      type: String,
-      default: 'All',
-    },
-  },
-
-  /**
-   * 
-   * @param props 
-   * 
-   */
-  setup(props) {
-    const products = ref([]);
-    const filteredProducts = ref([]);
-    const originalOrder = ref([]);
+  components: { ProductDisplay },
+  setup() {
+    const store = productStore(); // Use the store
     const router = useRouter();
 
+    // Directly use the store's state and methods
+    const filteredProducts = computed(() => {
+      let result = store.products.slice();
+
+      // Filter by category
+      if (store.selectedCategory !== 'All') {
+        result = result.filter(product => product.category === store.selectedCategory);
+      }
+
+      // Sort by price
+      if (store.sortOption === 'lowToHigh') {
+        result.sort((a, b) => a.price - b.price);
+      } else if (store.sortOption === 'highToLow') {
+        result.sort((a, b) => b.price - a.price);
+      }
+
+      return result;
+    });
+
     const fetchProducts = async () => {
-  try {
-    const response = await fetch('https://fakestoreapi.com/products');
-        const data = await response.json();
-        products.value = data;
-        filteredProducts.value = data;
-        originalOrder.value = [...data];  
+      try {
+        const response = await fetch('https://fakestoreapi.com/products');
+        store.products = await response.json(); // Directly set store products
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
 
-    /**
-     * 
-     * @param category 
-     */
-
-    const filterByCategory = (category) => {
-      if (category === 'All') {
-        filteredProducts.value = products.value;
-      } else {
-        filteredProducts.value = products.value.filter(product => product.category === category);
-      }
+    const handleSortChange = () => {
+      store.setSortOption(store.sortOption); // Set store sort option
     };
 
-
-    /**
-     * 
-     * @param order 
-     */
-     const sortByPrice = (order) => {
-      let sortedProducts;
-      if (order === 'lowToHigh') {
-        sortedProducts = [...filteredProducts.value].sort((a, b) => a.price - b.price);
-      } else if (order === 'highToLow') {
-        sortedProducts = [...filteredProducts.value].sort((a, b) => b.price - a.price);
-      } else {
-        sortedProducts = filteredProducts.value;
-      }
-      filteredProducts.value = sortedProducts;
-    };
-
-    const handleSortChange = (event) => {
-      const sortOrder = event.target.value;
-      sortByPrice(sortOrder);
-    };
-
-    const resetFiltersAndSorting = () => {
-      filteredProducts.value = [...originalOrder.value];  
-      if (props.selectedCategory !== 'All') {
-        filterByCategory(props.selectedCategory);
-      }
-    };
-
-
-    /**
-     * 
-     * @param id 
-     */
     const goToProduct = (id) => {
       router.push(`/product/${id}`);
     };
 
-    watch(() => props.selectedCategory, filterByCategory);
-
     onMounted(fetchProducts);
 
-    return { products, filteredProducts, handleSortChange, sortByPrice, resetFiltersAndSorting, goToProduct };
+    return {
+      filteredProducts,
+      store,
+      handleSortChange,
+      resetFiltersAndSorting: store.resetFiltersAndSorting,
+      goToProduct,
+    };
   },
 };
-
 </script>
 
 <template>
   
    <div>
     <div class="sort-options">
-      <select @change="handleSortChange" class="sort-dropdown">
+      <select v-model="store.sortOption" @change="handleSortChange" class="sort-dropdown">
         <option value="default">Default</option>
         <option value="lowToHigh">Price: Low to High</option>
         <option value="highToLow">Price: High to Low</option>
@@ -126,8 +87,15 @@ export default {
   display: flex;
   gap: 8px;
   margin-bottom: 26px;
-  margin-top: 70px;
+  margin-top: 38px;
   justify-content: center;
+  position: sticky; 
+  top: 0; 
+  background-color: rgb(41, 99, 119);
+  padding: 10px 0; 
+  z-index: 10;
+  border-bottom: 1px solid #ddd; 
+
 }
 
 .sort-dropdown {
