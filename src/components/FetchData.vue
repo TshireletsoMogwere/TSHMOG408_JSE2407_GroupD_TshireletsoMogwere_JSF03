@@ -84,18 +84,24 @@ export default {
 
 <style scoped>
 .sort-options {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 26px;
-  margin-top: 38px;
-  justify-content: center;
-  position: sticky; 
-  top: 0; 
+  width: 100%;
+  top: 10;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: rgb(41, 99, 119);
-  padding: 10px 0; 
-  z-index: 10;
-  border-bottom: 1px solid #ddd; 
+  text-align: center;
+  justify-items: center;
+  padding: 10px;
+  position: fixed; 
+}
 
+button {
+  margin-left: 15px;
+  padding: 8px 16px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5px;
 }
 
 .sort-dropdown {

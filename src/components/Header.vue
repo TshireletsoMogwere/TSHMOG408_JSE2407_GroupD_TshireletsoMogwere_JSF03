@@ -30,6 +30,7 @@
 
 
 <template>
+  
     <header class="header">
       <h1 class="store">TM Store</h1>
       <img src="/src/assets/favicon.ico" alt="icon" class="icon">
