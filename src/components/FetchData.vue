@@ -55,21 +55,21 @@ export default {
      * 
      * @param order 
      */
-    const sortByPrice = (order) => {
+     const sortByPrice = (order) => {
+      let sortedProducts;
       if (order === 'lowToHigh') {
-        filteredProducts.value.sort((a, b) => a.price - b.price);
+        sortedProducts = [...filteredProducts.value].sort((a, b) => a.price - b.price);
       } else if (order === 'highToLow') {
-        filteredProducts.value.sort((a, b) => b.price - a.price);
+        sortedProducts = [...filteredProducts.value].sort((a, b) => b.price - a.price);
+      } else {
+        sortedProducts = filteredProducts.value;
       }
+      filteredProducts.value = sortedProducts;
     };
 
     const handleSortChange = (event) => {
       const sortOrder = event.target.value;
-      if (sortOrder === 'default') {
-        resetFiltersAndSorting();
-      } else {
-        sortByPrice(sortOrder);
-      }
+      sortByPrice(sortOrder);
     };
 
     const resetFiltersAndSorting = () => {
@@ -92,7 +92,7 @@ export default {
 
     onMounted(fetchProducts);
 
-    return { products, filteredProducts, sortByPrice, resetFiltersAndSorting, goToProduct };
+    return { products, filteredProducts, handleSortChange, sortByPrice, resetFiltersAndSorting, goToProduct };
   },
 };
 
@@ -125,7 +125,9 @@ export default {
 .sort-options {
   display: flex;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 26px;
+  margin-top: 70px;
+  justify-content: center;
 }
 
 .sort-dropdown {
