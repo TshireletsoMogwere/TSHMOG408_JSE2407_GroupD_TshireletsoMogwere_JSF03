@@ -1,16 +1,15 @@
-<script setup>
+<script>
 
-import Products from './components/Products.vue';
 import '@fortawesome/fontawesome-free/css/all.css'
+export default {
+  components: {
+    
+  },
+};
 
 </script>
 
 <template>
- <div id="app">
-  
-    <Products />
-     
-  </div>
-
+  <router-view />
 </template>
 

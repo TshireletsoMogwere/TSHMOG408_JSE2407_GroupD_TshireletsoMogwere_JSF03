@@ -1,11 +1,12 @@
 <script>
-import { ref, onMounted} from 'vue';
-import Products from './Products.vue';
+import { ref, onMounted, watch} from 'vue';
+import ProductDisplay from './ProductDisplay.vue';
 import { useRouter } from 'vue-router';
 
 
+
 export default {
-  components: { Products},
+  components: { ProductDisplay},
   props: {
     selectedCategory: {
       type: String,
@@ -71,8 +72,11 @@ export default {
       }
     };
 
-  const resetFiltersAndSorting = () => {
+    const resetFiltersAndSorting = () => {
       filteredProducts.value = [...originalOrder.value];  
+      if (props.selectedCategory !== 'All') {
+        filterByCategory(props.selectedCategory);
+      }
     };
 
 
@@ -106,7 +110,7 @@ export default {
       <button @click="resetFiltersAndSorting">Reset</button>
     </div>
     <div class="product-list">
-      <ProductItem
+      <ProductDisplay
         v-for="product in filteredProducts"
         :key="product.id"
         :product="product"
@@ -136,3 +140,5 @@ export default {
   gap: 16px;
   justify-content: center;
 }
+
+</style>
