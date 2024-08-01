@@ -1,15 +1,28 @@
-<script setup>
-import { defineEmits, defineProps } from 'vue';
-const props = defineProps({
-  categories: Array,
-  selectedCategory: String
-});
+<script>
+ import { ref, onMounted } from 'vue';
 
-const emit = defineEmits(['update:selectedCategory']);
 
-const selectCategory = (category) => {
-  emit('update:selectedCategory', category);
-};
+ export default {
+    setup() {
+      const categories = ref([]);
+
+      const fetchCategories = async () => {
+        try {
+          const response = await fetch('https://fakestoreapi.com/products/categories');
+          categories.value = ['All', ...await response.json()];
+        } catch (error) {
+          console.error('Error fetching categories:', error);
+        }
+      };
+  
+      onMounted(fetchCategories);
+  
+      return { categories };
+
+    }
+  }
+  
+
 </script>
 
 
@@ -22,8 +35,7 @@ const selectCategory = (category) => {
         <button
           v-for="category in categories"
           :key="category"
-          :class="{ 'active': category === selectedCategory }"
-          @click="selectCategory(category)"
+          @click="$emit('category-select', category)"
         >
           {{ category }}
         </button>
