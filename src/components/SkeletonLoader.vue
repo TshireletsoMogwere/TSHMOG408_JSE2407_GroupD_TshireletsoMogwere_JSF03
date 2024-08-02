@@ -10,22 +10,22 @@ export default {
 
 <style scoped>
 .skeleton-card {
-  width: 200px;
-  height: 300px;
-  background-color: #e0e0e0;
-  border-radius: 8px;
-  animation: pulse 1.5s infinite ease-in-out;
+    aspect-ratio: 1;
+    position: relative;
+    top: 50%;
+    font-size: small;
+    text-align: center;
+    color: rgb(101, 94, 94);
+    text-decoration-style: none;
+    padding: 20px;
+    margin-top: 100px;
+    border:  rgb(33, 32, 32);
+    border-radius: 10%;
+    background-color: rgb(252, 251, 251);
+    cursor: pointer;
+    width: 300px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-@keyframes pulse {
-  0% {
-    background-color: #e0e0e0;
-  }
-  50% {
-    background-color: #f5f5f5;
-  }
-  100% {
-    background-color: #e0e0e0;
-  }
-}
+
 </style>

@@ -30,7 +30,7 @@
 
 
 <template>
-  
+
     <header class="header">
       <h1 class="store">TM Store</h1>
       <img src="/src/assets/favicon.ico" alt="icon" class="icon">
@@ -54,7 +54,7 @@
   
 <style scoped>
 .header {
-    background-color: rgb(177, 193, 236);
+    background-color: rgb(222, 221, 221);
   color: black;
   width: 100%;
   top: 0;

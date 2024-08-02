@@ -1,14 +1,16 @@
 <script>
-import {  computed, onMounted } from 'vue';
+import {  ref, computed, onMounted } from 'vue';
 import ProductDisplay from './ProductDisplay.vue';
 import { productStore } from '../stores/productStore';
 import { useRouter } from 'vue-router';
+import SkeletonLoader from './SkeletonLoader.vue';
 
 export default {
-  components: { ProductDisplay },
+  components: { ProductDisplay, SkeletonLoader},
   setup() {
     const store = productStore(); // Use the store
     const router = useRouter();
+    const loading = ref(true);
 
     // Directly use the store's state and methods
     const filteredProducts = computed(() => {
@@ -35,6 +37,8 @@ export default {
         store.products = await response.json(); // Directly set store products
       } catch (error) {
         console.error('Error fetching products:', error);
+      } finally {
+        loading.value = false; // Set loading to false once data is fetched
       }
     };
 
@@ -54,6 +58,7 @@ export default {
       handleSortChange,
       resetFiltersAndSorting: store.resetFiltersAndSorting,
       goToProduct,
+      loading,
     };
   },
 };
@@ -70,6 +75,12 @@ export default {
       </select>
       <button @click="resetFiltersAndSorting">Reset</button>
     </div>
+
+
+    <div v-if="loading" class="skeleton-container">
+      <SkeletonLoader v-for="n in 6" :key="n" />
+    </div>
+
     <div class="product-list">
       <ProductDisplay
         v-for="product in filteredProducts"
@@ -85,11 +96,8 @@ export default {
 <style scoped>
 .sort-options {
   width: 100%;
-  top: 10;
-  left: 0;
-  z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: rgb(41, 99, 119);
+  background-color: rgba(37, 37, 37, 0.871);
   text-align: center;
   justify-items: center;
   padding: 10px;
@@ -98,6 +106,7 @@ export default {
 
 button {
   margin-left: 15px;
+  margin-top: 20px;
   padding: 8px 16px;
   background-color: white;
   border: 1px solid white;
@@ -111,6 +120,13 @@ button {
 }
 
 .product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.skeleton-container {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;

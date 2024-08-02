@@ -12,6 +12,7 @@ export default {
 <template>
   <!-- Products Display -->
    <div class="product-card">
+
     <img :src="product.image" alt="product image" class="product-image" />
     <div class="product-details">
       <h2 class="product-title">{{ product.title }}</h2>
@@ -20,10 +21,11 @@ export default {
     </div>
   </div>
   </template>
+  
 <style scoped> 
 
 .product-image {
-    display: block;
+  display: block;
   margin: 0 auto;
   width: 60%;
   height: 65%;
@@ -41,12 +43,13 @@ export default {
     color: rgb(101, 94, 94);
     text-decoration-style: none;
     padding: 20px;
+    margin-top: 100px;
     border:  rgb(33, 32, 32);
     border-radius: 10%;
     background-color: rgb(252, 251, 251);
     cursor: pointer;
     width: 300px;
-  transition: transform 0.3s, box-shadow 0.3s;
+   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .product-card:hover {
