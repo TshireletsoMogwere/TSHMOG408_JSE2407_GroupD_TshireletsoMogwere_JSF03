@@ -122,6 +122,7 @@ export default {
   padding: 10px;
   position: fixed;
   z-index: 1;
+  top: 95px;
 }
 
 button {
@@ -159,7 +160,8 @@ button {
   .sort-options {
     flex-direction: column;
     align-items: center;
-    padding: 20px 10px;
+    margin-top: 40px;
+    padding: 10px 10px;
   }
 
   button {

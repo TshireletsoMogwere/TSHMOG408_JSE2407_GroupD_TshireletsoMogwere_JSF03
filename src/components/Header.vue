@@ -64,12 +64,18 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px;
+      padding: 20px;
       position: fixed;
       font-weight: bolder;
       font-size: x-large;
     }
 
+    .header-icons {
+      display: flex;
+      gap: 10px;
+      position: relative;
+      right: 40px;
+    }
     .icon {
       margin-right: 15px; 
       height: auto;
@@ -141,6 +147,7 @@
         justify-content: center;
         margin-top: 10px;
         gap: 15px;
+        margin-left: 30px;
       }
 
       .header-icon {
