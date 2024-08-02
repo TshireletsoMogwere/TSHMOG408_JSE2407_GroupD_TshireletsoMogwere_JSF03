@@ -12,12 +12,11 @@ export default {
 <template>
   <!-- Products Display -->
    <div class="product-card">
-
     <img :src="product.image" alt="product image" class="product-image" />
     <div class="product-details">
       <h2 class="product-title">{{ product.title }}</h2>
-      <p class="product-price">${{ product.price }}</p>
-      <p class="product-category">{{ product.category }}</p>
+      <p class="product-price">Price: ${{ product.price }}</p>
+      <p id="product-category">Category: {{ product.category }}</p>
     </div>
   </div>
   </template>
@@ -35,21 +34,19 @@ export default {
 
 
 .product-card {
-    aspect-ratio: 1;
-    position: relative;
-    top: 50%;
-    font-size: small;
-    text-align: center;
-    color: rgb(101, 94, 94);
-    text-decoration-style: none;
-    padding: 20px;
-    margin-top: 100px;
-    border:  rgb(33, 32, 32);
-    border-radius: 10%;
-    background-color: rgb(252, 251, 251);
-    cursor: pointer;
-    width: 300px;
-   transition: transform 0.3s, box-shadow 0.3s;
+  aspect-ratio: 1;
+  font-size: small;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-align: center;
+  color: rgb(101, 94, 94);
+  padding: 20px;
+  margin-top: 120px; 
+  border: rgb(33, 32, 32);
+  border-radius: 10%;
+  background-color: rgb(252, 251, 251);
+  cursor: pointer;
+  width: 300px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .product-card:hover {
@@ -60,15 +57,72 @@ export default {
 .product-card h2 {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
+  color: rgba(37, 37, 37, 0.871);
+}
+
+#product-category  {
+  font-size: large;
+  color:rgb(65, 58, 58);
+  margin-bottom: 1rem;
 }
 
 .product-card p {
   margin: 0.5rem 0;
+  font-size: large;
+  color: black;
 }
 
 .product-card p:first-of-type {
   font-weight: bold;
   color: #333;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .product-card {
+    margin-top: 400px;
+    width: 80%;
+    padding: 15px;
+  }
+
+  .product-card h2 {
+    font-size: 1.1rem;
+  }
+
+  .product-card p {
+    font-size: medium;
+  }
+
+  #product-category {
+    font-size: medium;
+  }
+
+  .product-image {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .product-card h2 {
+    font-size: 1rem;
+  }
+
+  .product-card p {
+    font-size: small;
+  }
+
+  #product-category {
+    font-size: small;
+  }
+
+  .product-image {
+    width: 100%;
+  }
 }
 </style>
 

@@ -1,17 +1,26 @@
 <script>
  import { ref, onMounted } from 'vue';
   import { useRoute, useRouter} from 'vue-router';
+  import SkeletonDetailsLoader from '../SkeletonDetailsLoader.vue';
   
   export default {
+    components: { SkeletonDetailsLoader },
     setup() {
       const product = ref(null);
+      const loading = ref(true);
       const route = useRoute();
       const router = useRouter();
   
       const fetchProduct = async () => {
+        try {
         const response = await fetch(`https://fakestoreapi.com/products/${route.params.id}`);
         product.value = await response.json();
-      };
+    } catch (error) {
+        console.error('Error fetching product:', error);
+      } finally {
+        loading.value = false; // Set loading to false once data is fetched
+      }
+    };
   
       onMounted(fetchProduct);
 
@@ -19,14 +28,19 @@
       router.push('/'); 
     };
   
-      return { product, goBack };
+      return { product,loading, goBack };
     },
   };
 
 </script>
 <template>
+
+<div v-if="loading" class="skeleton-container">
+      <SkeletonDetailsLoader /> 
+    </div>
+
+    
 <div v-if="product" class="product-details">
-      <img :src="product.image" :alt="product.title" />
       <button @click="goBack" class="go-back">
       <i class="fas fa-arrow-left"></i> Go Back
     </button>
@@ -38,81 +52,79 @@
         <span style="color: white;">ratings {{ product.rating.rate }} </span>
         <span style="color: lightgray;">{{ product.rating.count }} reviews</span>
     </button>
+<div class="product-image">
+<img :src="product.image" :alt="product.title" />
+</div>
     </div>
 </template>
 
 <style scoped>
 .product-details {
-  margin: 20px auto;
+  margin-left: 600px ;
   padding: 20px;
+  max-width: 1200px;
+  gap: 20px; 
+  position: absolute;
+  top: 200px;
 }
 
-.overlay {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 600px;
+img {
+  width: 400px;
+  height: full;
+  position: relative;
+  right: 500px;
+  bottom: 300px;
+}
+
+.product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-info h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
- img {
-    width: 20%;
-    height: full;
-    margin-top: 200px;
-}
-
-h1 {
-  position: absolute;
-  top: 30%;
-  left: 40%;
-}
-
- p {
-  width: 800px;
-  position: absolute;
-  top: 40%;
-  left: 40%;
-  font-size: 25px ;
-  
+.product-info p {
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+  text-align: center;
 }
 
 #price {
-    position: absolute;
-  top: 55%;
-  
-  font-weight: bolder;
-  font-size: xx-large ;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 #category {
-    position: absolute;
-  top: 62%;
- 
-  font-size: 30px;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 
 button {
-  position: absolute;
-  top: 73%;
-  left: 40%;
   background-color: black;
   color: white;
+  border: none;
   border-radius: 5px;
   height: 40px;
-  font-weight: bolder ;
-  font-size: large;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .ratings-button {
-  background-color: #242424; 
-  margin-bottom: 10px;
+  background-color: #242424;
+  margin-top: 1rem;
 }
 
 .go-back {
-position: absolute;
-top: 20%;
   background-color: rgb(129, 129, 129);
   border: none;
 }
@@ -122,9 +134,16 @@ button:hover {
 }
 
 .ratings-button:hover {
-  background-color: #e6e7e6; 
+  background-color: #e6e7e6;
 }
 
+.rating-text {
+  color: white;
+}
+
+.review-text {
+  color: lightgray;
+}
 
 
 </style>
