@@ -2,9 +2,11 @@
  import { ref, onMounted } from 'vue';
   import { useRoute, useRouter} from 'vue-router';
   import SkeletonDetailsLoader from '../SkeletonDetailsLoader.vue';
+import Header from '../Header.vue';
+
   
   export default {
-    components: { SkeletonDetailsLoader },
+    components: {  SkeletonDetailsLoader},
     setup() {
       const product = ref(null);
       const loading = ref(true);
@@ -33,10 +35,12 @@
   };
 
 </script>
+
 <template>
 
+  
 <div v-if="loading" class="skeleton-container">
-      <SkeletonDetailsLoader /> 
+      <SkeletonDetailsLoader/> 
     </div>
 
     
@@ -59,6 +63,7 @@
 </template>
 
 <style scoped>
+
 .product-details {
   margin-left: 600px ;
   padding: 20px;
@@ -89,10 +94,8 @@ img {
   text-align: center;
 }
 
-.product-info p {
-  margin: 0.5rem 0;
-  font-size: 1.25rem;
-  text-align: center;
+#description {
+  font-size: larger;
 }
 
 #price {

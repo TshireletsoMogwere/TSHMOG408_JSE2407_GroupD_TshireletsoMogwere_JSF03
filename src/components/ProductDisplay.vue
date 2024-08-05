@@ -39,7 +39,7 @@ export default {
   font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-align: center;
   color: rgb(101, 94, 94);
-  padding: 20px;
+  padding: 30px;
   margin-top: 120px; 
   border: rgb(33, 32, 32);
   border-radius: 10%;
