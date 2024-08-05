@@ -23,7 +23,7 @@ export default {
 <template>
     <div>
       <Header @category-select="setSelectedCategory" />
-      <h1>Product List</h1>
+
       <FetchData :selectedCategory="selectedCategory" />
     </div>
   </template>

@@ -12,6 +12,7 @@ export default {
   setup() {
     const { state, setCategory } = productStore();
     const categories = ref([]);
+    const selectedCategory = ref('All');
 
     const fetchCategories = async () => {
       try {
@@ -22,9 +23,14 @@ export default {
       }
     };
 
+    const handleCategoryClick = (category) => {
+      selectedCategory.value = category;
+      setCategory(category);
+    };
+
     onMounted(fetchCategories);
 
-    return { categories, state, setCategory };
+    return { categories, state, setCategory, selectedCategory, handleCategoryClick};
   }
 };
 </script>
@@ -40,7 +46,8 @@ export default {
         <button
           v-for="category in categories"
           :key="category"
-          @click="setCategory(category)"
+          @click="handleCategoryClick(category)"
+          :class="{ active: category === selectedCategory }"
         >
           {{ category }}
         </button>
