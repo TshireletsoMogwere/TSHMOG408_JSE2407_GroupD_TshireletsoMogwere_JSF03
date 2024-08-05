@@ -12,6 +12,7 @@ export default {
 <template>
   <!-- Products Display -->
    <div class="product-card">
+    
     <img :src="product.image" alt="product image" class="product-image" />
     <div class="product-details">
       <h2 class="product-title">{{ product.title }}</h2>

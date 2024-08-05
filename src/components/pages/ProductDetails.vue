@@ -6,7 +6,7 @@ import Header from '../Header.vue';
 
   
   export default {
-    components: {  SkeletonDetailsLoader},
+    components: {  Header,SkeletonDetailsLoader},
     setup() {
       const product = ref(null);
       const loading = ref(true);
@@ -37,11 +37,12 @@ import Header from '../Header.vue';
 </script>
 
 <template>
-
-  
+<div>
+<Header :showCategories="false" />
 <div v-if="loading" class="skeleton-container">
       <SkeletonDetailsLoader/> 
     </div>
+    
 
     
 <div v-if="product" class="product-details">
@@ -60,6 +61,11 @@ import Header from '../Header.vue';
 <img :src="product.image" :alt="product.title" />
 </div>
     </div>
+
+    <div v-else>
+      <p>Product not found.</p>
+    </div>
+  </div>
 </template>
 
 <style scoped>

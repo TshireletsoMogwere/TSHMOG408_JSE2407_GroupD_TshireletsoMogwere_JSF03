@@ -1,30 +1,32 @@
 <script>
- import { ref, onMounted } from 'vue';
- import { productStore } from '../stores/productStore';
+import { ref, onMounted } from 'vue';
+import { productStore } from '../stores/productStore';
 
-
- export default {
-    setup() {
-      const { state, setCategory } = productStore();
-      const categories = ref([]);
-
-      const fetchCategories = async () => {
-        try {
-          const response = await fetch('https://fakestoreapi.com/products/categories');
-          categories.value = ['All', ...await response.json()];
-        } catch (error) {
-          console.error('Error fetching categories:', error);
-        }
-      };
-  
-      onMounted(fetchCategories);
-  
-      return { categories, state, setCategory };
-
+export default {
+  props: {
+    showCategories: {
+      type: Boolean,
+      default: true
     }
-  }
-  
+  },
+  setup() {
+    const { state, setCategory } = productStore();
+    const categories = ref([]);
 
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('https://fakestoreapi.com/products/categories');
+        categories.value = ['All', ...await response.json()];
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    onMounted(fetchCategories);
+
+    return { categories, state, setCategory };
+  }
+};
 </script>
 
 
@@ -34,7 +36,7 @@
     <header class="header">
       <h1 class="store">TM Store</h1>
       <img src="/src/assets/favicon.ico" alt="icon" class="icon">
-      <div class="category-selector">
+      <div v-if="showCategories" class="category-selector">
         <button
           v-for="category in categories"
           :key="category"
