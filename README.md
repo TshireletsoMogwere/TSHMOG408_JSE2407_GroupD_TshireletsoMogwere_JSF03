@@ -2,7 +2,7 @@
 
 **Introduction**
 
-This is an E-commerce Store project designed as a web application to allow users to browse, search, filter, and sort products from a mock e-commerce API. The project includes features such as category filtering, sorting by price, and a navigation page for product details. 
+This is an E-commerce Store project designed as a web application to allow users to browse, search, filter, and sort products from a mock e-commerce API. The project includes features such as category filtering, sorting by price, and a navigation page for product details.
 
 **Technologies Used**
 
@@ -16,6 +16,7 @@ This is an E-commerce Store project designed as a web application to allow users
 - **GitHub**: A web-based platform for version control and collaboration, hosting the source code repository and facilitating project management and issue tracking.
 
 **Setup Instructions**
+
 # Prerequisites
 
 Make sure you have the following installed:
@@ -30,10 +31,11 @@ Make sure you have the following installed:
 - Install: **npm install**
 - Run with a live server: **npm run dev**
 
-**Note!**: 
+**Note!**:
 Make sure to replace `<repository-url>` and `<project-directory>` with the actual URL of your repository and the directory name, respectively. This provides a clear step-by-step guide for setting up the project.
 
 **Usage**
+
 # Viewing Products
 
 1. Sorting Products: Use the "Sort By Price" button to sort products by price.

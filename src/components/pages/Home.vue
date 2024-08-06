@@ -3,9 +3,9 @@
  *  This is a Vue component that includes a Header and FetchData components.
  * It uses the Composition API to manage the state of the selected category.
  */
-import { ref } from 'vue';
-import Header from '../Header.vue';
-import FetchData from '../FetchData.vue';
+import { ref } from "vue";
+import Header from "../Header.vue";
+import FetchData from "../FetchData.vue";
 
 export default {
   components: {
@@ -17,7 +17,7 @@ export default {
      *  The `selectedCategory` ref holds the currently selected category.
      * @type {ref<string>}
      */
-    const selectedCategory = ref('All');
+    const selectedCategory = ref("All");
 
     /**
      * Sets selected category
@@ -33,9 +33,9 @@ export default {
 </script>
 
 <template>
-    <div>
-      <Header @category-select="setSelectedCategory" />
+  <div>
+    <Header @category-select="setSelectedCategory" />
 
-      <FetchData :selectedCategory="selectedCategory" />
-    </div>
-  </template>
+    <FetchData :selectedCategory="selectedCategory" />
+  </div>
+</template>

@@ -4,41 +4,43 @@
  * This component is typically used as a placeholder while content is being fetched or loaded.
  */
 export default {
-  name: 'SkeletonLoader',
+  name: "SkeletonLoader",
 };
 </script>
 
 <template>
-    <div class="skeleton-card">
-        <div class="skeleton-image"></div>
+  <div class="skeleton-card">
+    <div class="skeleton-image"></div>
     <div class="skeleton-text skeleton-title"></div>
     <div class="skeleton-text skeleton-description"></div>
     <div class="skeleton-text skeleton-price"></div>
-    </div>
-  </template>
+  </div>
+</template>
 
 <style scoped>
 .skeleton-card {
   aspect-ratio: 1;
-    position: relative;
-    top: 50%;
-    font-size: small;
-    text-align: center;
-    color: rgb(101, 94, 94);
-    text-decoration-style: none;
-    padding: 20px;
-    margin-top: 100px;
-    border:  rgb(33, 32, 32);
-    border-radius: 10%;
-    background-color: rgb(252, 251, 251);
-    cursor: pointer;
-    width: 300px;
-   transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  top: 50%;
+  font-size: small;
+  text-align: center;
+  color: rgb(101, 94, 94);
+  text-decoration-style: none;
+  padding: 20px;
+  margin-top: 100px;
+  border: rgb(33, 32, 32);
+  border-radius: 10%;
+  background-color: rgb(252, 251, 251);
+  cursor: pointer;
+  width: 300px;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
 }
 
 .skeleton-image {
   width: 100%;
-  height: 200px; 
+  height: 200px;
   background: #e0e0e0;
   border-radius: 4px;
   margin-bottom: 16px;

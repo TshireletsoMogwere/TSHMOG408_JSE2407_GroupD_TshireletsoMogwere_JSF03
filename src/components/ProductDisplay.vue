@@ -23,8 +23,7 @@ export default {
 
 <template>
   <!-- Products Display -->
-   <div class="product-card">
-    
+  <div class="product-card">
     <img :src="product.image" alt="product image" class="product-image" />
     <div class="product-details">
       <h2 class="product-title">{{ product.title }}</h2>
@@ -32,10 +31,9 @@ export default {
       <p id="product-category">Category: {{ product.category }}</p>
     </div>
   </div>
-  </template>
-  
-<style scoped> 
+</template>
 
+<style scoped>
 .product-image {
   display: block;
   margin: 0 auto;
@@ -45,21 +43,33 @@ export default {
   transition: transform 0.3s ease-in-out;
 }
 
-
 .product-card {
   aspect-ratio: 1;
   font-size: small;
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
   text-align: center;
   color: rgb(101, 94, 94);
   padding: 30px;
-  margin-top: 120px; 
+  margin-top: 120px;
   border: rgb(33, 32, 32);
   border-radius: 10%;
   background-color: rgb(252, 251, 251);
   cursor: pointer;
   width: 300px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
 }
 
 .product-card:hover {
@@ -73,9 +83,9 @@ export default {
   color: rgba(37, 37, 37, 0.871);
 }
 
-#product-category  {
+#product-category {
   font-size: large;
-  color:rgb(65, 58, 58);
+  color: rgb(65, 58, 58);
   margin-bottom: 1rem;
 }
 
@@ -138,4 +148,3 @@ export default {
   }
 }
 </style>
-

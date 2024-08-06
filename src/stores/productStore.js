@@ -1,11 +1,11 @@
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { defineStore } from "pinia";
+import { ref } from "vue";
 
 /**
  * Defines a Pinia store for managing product data, categories, and sorting options.
  * @return {Object} The product store, containing state and methods for managing products, categories, and sorting.
  */
-export const productStore = defineStore('productStore', () => {
+export const productStore = defineStore("productStore", () => {
   /**
    * State: List of products.
    * @type {ref<Array>}
@@ -16,16 +16,16 @@ export const productStore = defineStore('productStore', () => {
    * State: Selected category for filtering products.
    * @type {ref<string>}
    */
-  const selectedCategory = ref('All');
+  const selectedCategory = ref("All");
 
   /**
    * State: Sorting option for products.
    * @type {ref<string>}
    */
-  const sortOption = ref('default');
+  const sortOption = ref("default");
 
   /**
-   * 
+   *
    * @param {string} category - The category to set as selected.
    */
   const setCategory = (category) => {
@@ -44,8 +44,8 @@ export const productStore = defineStore('productStore', () => {
    * Resets the filters and sorting to their default values.
    */
   const resetFiltersAndSorting = () => {
-    selectedCategory.value = 'All';
-    sortOption.value = 'default';
+    selectedCategory.value = "All";
+    sortOption.value = "default";
   };
 
   return {
@@ -54,6 +54,6 @@ export const productStore = defineStore('productStore', () => {
     sortOption,
     setCategory,
     setSortOption,
-    resetFiltersAndSorting
+    resetFiltersAndSorting,
   };
 });
