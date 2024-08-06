@@ -1,4 +1,9 @@
 <script>
+/**
+ * This is a Vue component for displaying and managing a list of products.
+ * It fetches product data from a fake store API, supports filtering and sorting,
+ * and allows navigation to a product's details.
+ */
 import {  ref, computed, onMounted, watch} from 'vue';
 import ProductDisplay from './ProductDisplay.vue';
 import { productStore } from '../stores/productStore';
@@ -13,7 +18,11 @@ export default {
     const loading = ref(true);
     const detailLoading = ref(false);
 
-    // Directly use the store's state and methods
+    /**
+     * Directly use the store's state and methods
+     * @returns {Array} The filtered and sorted list of products.
+     */
+
     const filteredProducts = computed(() => {
       let result = store.products.slice();
 
@@ -32,6 +41,10 @@ export default {
       return result;
     });
 
+    /**
+     * Fetches the list of products from the API and updates the store.
+     */
+
     const fetchProducts = async () => {
       try {
         const response = await fetch('https://fakestoreapi.com/products');
@@ -43,6 +56,10 @@ export default {
       }
     };
 
+    /**
+     * Handles changes to the sort option by updating the store and simulating a loading delay.
+     */
+
     const handleSortChange = async () => {
       store.setSortOption(store.sortOption); // Set store sort option
       loading.value = true;
@@ -50,6 +67,11 @@ export default {
       loading.value = false;
     };
 
+    /**
+     * 
+     * @param {number} id - The ID of the product to navigate to.
+     * Navigates to the product detail page and handles loading state.
+     */
     const goToProduct = async (id) => {
       detailLoading.value = true;
       try {

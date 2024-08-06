@@ -8,10 +8,26 @@ import Header from '../Header.vue';
   export default {
     components: {  Header,SkeletonDetailsLoader},
     setup() {
+      /**
+       * The `product` ref holds the product data fetched from the API.
+       * @type {ref<Object|null>}
+       */
       const product = ref(null);
+
+      /**
+       * @type {ref<boolean>}
+       * The `loading` ref indicates whether the data is still being fetched.
+       * }
+       */
       const loading = ref(true);
       const route = useRoute();
       const router = useRouter();
+
+      /**
+       *  Fetches the product data based on the route parameter `id`.
+       *  Sets the `product` ref to the fetched data and `loading` to false.
+       *  Logs an error if fetching fails.
+       */
   
       const fetchProduct = async () => {
         try {
@@ -25,6 +41,10 @@ import Header from '../Header.vue';
     };
   
       onMounted(fetchProduct);
+
+      /**
+       * Navigate back to the main page.
+       */
 
       const goBack = () => {
       router.push('/'); 

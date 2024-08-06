@@ -1,5 +1,17 @@
 <script>
+/**
+ * This is a Vue component that receives a product object as a prop.
+ * The product object contains details about a specific product.
+
+ */
 export default {
+  /**
+   * The product object passed as a prop.
+   * It contains details about a specific product.
+   * @type {Object}
+   * @required
+   */
+
   props: {
     product: {
       type: Object,

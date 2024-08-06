@@ -1,4 +1,8 @@
 <script>
+/**
+ * SkeletonLoader is a Vue component used to display a loading skeleton.
+ * This component is typically used as a placeholder while content is being fetched or loaded.
+ */
 export default {
   name: 'SkeletonLoader',
 };
