@@ -174,5 +174,58 @@ button:hover {
   color: lightgray;
 }
 
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .product-details {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .product-info h1 {
+    font-size: 1.5rem;
+  }
+
+  #description {
+    font-size: 0.875rem;
+  }
+
+  #price {
+    font-size: 1rem;
+  }
+
+  #category {
+    font-size: 0.875rem;
+  }
+
+  .product-image img {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-info h1 {
+    font-size: 1.25rem;
+  }
+
+  #description {
+    font-size: 0.75rem;
+  }
+
+  #price {
+    font-size: 0.875rem;
+  }
+
+  #category {
+    font-size: 0.75rem;
+  }
+
+  .product-image img {
+    max-width: 100%;
+  }
+
+  button {
+    font-size: 0.875rem;
+  }
+}
 
 </style>
