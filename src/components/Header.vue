@@ -1,4 +1,5 @@
 <script>
+
 /**
  * This is a Vue component for displaying product categories.
  * It fetches categories from a fake store API and allows users to select a category.
@@ -19,10 +20,9 @@ export default {
     }
   },
   setup() {
-    const { state, setCategory } = productStore();
+    const store= productStore();
     const categories = ref([]);
-    const selectedCategory = ref('All');
-
+   
     /**
      * Fetches the list of product categories from the API.
      * Adds an 'All' category to the beginning of the list.
@@ -42,13 +42,12 @@ export default {
      * @param {string} category - The category clicked
      */
     const handleCategoryClick = (category) => {
-      selectedCategory.value = category;
-      setCategory(category);
+      store.setCategory(category);
     };
 
     onMounted(fetchCategories);
 
-    return { categories, state, setCategory, selectedCategory, handleCategoryClick};
+    return { categories, store,handleCategoryClick};
   }
 };
 </script>
@@ -65,7 +64,7 @@ export default {
           v-for="category in categories"
           :key="category"
           @click="handleCategoryClick(category)"
-          :class="{ active: category === selectedCategory }"
+          :class="{ active: category === store.selectedCategory }"
         >
           {{ category }}
         </button>
